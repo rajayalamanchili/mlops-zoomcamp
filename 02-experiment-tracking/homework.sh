@@ -5,9 +5,10 @@ conda init bash
 conda activate mlopszoomcamp
 
 # conda install --yes --file requirements.txt
-python install -r requirements.txt
+pip install -r requirements.txt
 
-echo "Q1. $(mlflow --version)"
+echo "" |> hw2_answers.txt
+echo "Q1. $(mlflow --version)" >> hw2_answers.txt
 
 mkdir -p input_data
 export MLFLOW_HW2_INPUT_DIR="$(pwd)/input_data"
@@ -19,14 +20,27 @@ wget -N -P $MLFLOW_HW2_INPUT_DIR "https://d37ci6vzurychx.cloudfront.net/trip-dat
 
 python preprocess_data.py --raw_data_path $MLFLOW_HW2_INPUT_DIR --dest_path ./output
 
-echo "Q2. number of files in output folder: $(ls -1q ./output | wc -l)"
+echo " " >> hw2_answers.txt
+echo "Q2. number of files in output folder: $(ls -1q ./output | wc -l)" >> hw2_answers.txt
 
-python q3_solution.py
+echo " " >> hw2_answers.txt
+echo "$(python q3_solution.py)" >> hw2_answers.txt
 
 mkdir -p artifacts
 
 mlflow server --host 127.0.0.1 --port 5000 --backend-store-uri sqlite:///mlflow.db --artifacts-destination artifacts
 
-export MLFLOW_TRACKING_URI="http://127.0.0.1:5000"
+echo " " >> hw2_answers.txt
+echo "Q4. argument to mlflow server: artifacts-destination" >> hw2_answers.txt
+
+python hpo.py
+
+echo " " >> hw2_answers.txt
+echo "$(python q5_solution.py)" >> hw2_answers.txt
+
+python register_model.py
+
+echo " " >> hw2_answers.txt
+echo "$(python q6_solution.py)" >> hw2_answers.txt
 
 conda deactivate #mlopszoomcamp

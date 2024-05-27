@@ -163,7 +163,8 @@ models/
 mlruns/
 mlopszoomcamp/
 input_data/
+artifacts/
 *.parquet
 *.pkl
 *.db
-
+*answer*.txt
