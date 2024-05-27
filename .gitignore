@@ -161,6 +161,9 @@ cython_debug/
 
 models/
 mlruns/
-
+mlopszoomcamp/
+input_data/
 *.parquet
 *.pkl
+*.db
+
