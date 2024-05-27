@@ -4,7 +4,8 @@ conda create -n mlopszoomcamp python -y
 conda init bash
 conda activate mlopszoomcamp
 
-conda install --yes --file requirements.txt
+# conda install --yes --file requirements.txt
+python install -r requirements.txt
 
 echo "Q1. $(mlflow --version)"
 
@@ -22,5 +23,10 @@ echo "Q2. number of files in output folder: $(ls -1q ./output | wc -l)"
 
 python q3_solution.py
 
+mkdir -p artifacts
+
+mlflow server --host 127.0.0.1 --port 5000 --backend-store-uri sqlite:///mlflow.db --artifacts-destination artifacts
+
+export MLFLOW_TRACKING_URI="http://127.0.0.1:5000"
 
 conda deactivate #mlopszoomcamp
