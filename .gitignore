@@ -164,7 +164,9 @@ mlruns/
 mlopszoomcamp/
 input_data/
 artifacts/
+mage-quickstart/
 *.parquet
 *.pkl
 *.db
 *answer*.txt
+*.bin
