@@ -19,7 +19,7 @@ def read_data(filename):
     return df
 
 
-def validate(taxi_type= "yellow", year = 2023, month = 3):
+def validate(taxi_type, year, month):
 
     # load model
     print(f"loading model")
