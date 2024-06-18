@@ -170,3 +170,4 @@ mage-quickstart/
 *.db
 *answer*.txt
 *.bin
+*.json
