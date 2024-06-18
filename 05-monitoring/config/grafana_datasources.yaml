@@ -8,9 +8,9 @@ datasources:
     type: postgres
     access: proxy
     url: db.:${DB_PORT}
-    database: test
-    user: ${POSTGRES_USER}
+    database: ${DB_NAME}
+    user: ${DB_USER}
     secureJsonData:
-      password: ${POSTGRES_PASSWORD}
+      password: ${DB_PASSWORD}
     jsonData:
       sslmode: 'disable'
