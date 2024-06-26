@@ -13,6 +13,20 @@ echo "Q3. How many rows should be there in the expected dataframe?: 2"
 echo "Q4. In both cases we should adjust commands for localstack. What option do we need to use for such purposes?: --endpoint-url"
 
 # docker-compose up -d
+# sleep 1
 
 # aws --endpoint-url=http://localhost:4566 s3 mb s3://nyc-duration
 # aws --endpoint-url=http://localhost:4566 s3 ls
+
+
+pipenv run python integration_test.py
+
+ERROR_CODE=$?
+
+if[ ${ERROR_CODE} != 0 ]; then
+    docker-compose logs
+fi
+
+docker-compose up down
+
+exit ${ERROR_CODE}
