@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 from datetime import datetime
 
 import batch
@@ -43,4 +44,7 @@ def test_integration():
     os.system("python batch.py 2023 1")
 
     df_actual = pd.read_parquet(output_file, storage_options=options)
-    print(df_actual["predicted_duration"].sum())
+    sum_predictions = df_actual["predicted_duration"].sum()
+    print(f"sum of predictions: {sum_predictions}")
+
+    assert (sum_predictions - 36.28) < 0.1
